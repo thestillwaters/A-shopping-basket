@@ -5,9 +5,9 @@ A shopping website implementing ASP.NET MVC with Entity Framework.
 
 Based on ASP.NET MVC with Entity Framework and CSS by Lee Naylor (Apress, 2016).
 
-Get started
+##Get started
 
-1. To force a re-install of the packages with: Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
+1. To force a re-install of the packages with: `Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r`
 
     from the Package Manager Console in Visual Studio. 
 
