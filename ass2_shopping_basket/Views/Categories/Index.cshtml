@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ass2_shopping_basket.Models.Category>
+@using PagedList.Mvc
+@*@model ass2_shopping_basket.ViewModels.CategoryIndexViewModel
+
+
+    @{
+        ViewBag.Title = "Category";
+    }
+    for Header in Category page, renamed from "Index"
+    <h2>Category</h2>
+
+    <h2>@ViewBag.Title</h2>
+
+
+    lab7c-only login user can view products
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Categories)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)-lab4
+                    @Html.ActionLink(item.Name, "Index", "Products", new { category = item.Name }, null)
+                </td>
+                <td>
+                    //lab7c
+
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.Raw(" | ")
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+
+@{
+    ViewBag.Title = "Index"; }<h2>@ViewBag.Title</h2>
+
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr> @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Name)*@
+                    @Html.ActionLink(item.Name, "Index", "Products", new
+                    {
+                        category =
+                    item.Name
+                    }, null)
+                </td>
+                <td>
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {@Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                    @Html.Raw(" | ") @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                }
+                </td>
+            </tr>
+        }
+    </table>
+    @*lab5
+    <div>
+        Page @(Model.Categories.PageCount < Model.Categories.PageNumber ? 0 : Model.Categories.PageNumber) of @Model.Categories.PageCount
+        @Html.PagedListPager(Model.Categories, page => Url.Action("Index", new
+    {
+    category = @Model.Categories,
+    page
+    }))
+    </div>*@
